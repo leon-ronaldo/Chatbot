@@ -66,12 +66,14 @@ function BottomBar({userPrompt, userPromptSetter, gotInputSetter, chats, chatsSe
     )
 }
 
-function UserChat({userPrompt}) {
+function UserChat({userPrompt, last, keyIndex}) {
+    console.log(userPrompt, keyIndex);
+
     return(
         <>
             <div className="user-chat-container">
-                <div style={{display: "flex", alignItems: "center"}}>
-                    <img src={editIcon} alt="" onClick={() => {}}/>
+                <div style={{display: "flex", alignItems: "center", justifyContent: "end"}}>
+                    {last === keyIndex ? <img src={editIcon} alt="" onClick={() => {}}/> : <></>}
                     <div className="user-chat-bubble">
                         <p> {userPrompt} </p>
                     </div>
@@ -97,12 +99,14 @@ function BotChat({botReply}) {
 }
 
 function Content({gotInput, userName, welcomeMessages, historyMessages, chats}) {
+    const [last, setLast] = useState(0);
 
     useEffect(() => {
         const chatInterface = document.querySelector('.chatbot-chat-interface');
         if (chatInterface) {
             chatInterface.scrollTop = chatInterface.scrollHeight; // Auto-scroll to the bottom when new messages arrive
         }
+        setLast(chats.length - 2);
     }, [chats]);  
 
     return(
@@ -113,7 +117,7 @@ function Content({gotInput, userName, welcomeMessages, historyMessages, chats}) 
                     ? 
                         <div className="chatbot-chat-interface">
                             {chats && chats.map((chat, index) => (
-                                chat.type === "user" ? <UserChat userPrompt={chat.message} key={index}/> : <BotChat botReply={chat.message} key={index} />
+                                chat.type === "user" ? <UserChat userPrompt={chat.message} key={index} keyIndex={index} last={last}/> : <BotChat botReply={chat.message} key={index} />
                             ))}
                         </div>
                     :
@@ -160,4 +164,4 @@ function Content({gotInput, userName, welcomeMessages, historyMessages, chats}) 
     )
 }
 
-export {TopBar, BottomBar, Content}
+export {TopBar, BottomBar, Content, UserChat, BotChat}

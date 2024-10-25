@@ -17,7 +17,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     color: whitesmoke;
     font-family: poppins;
 }
@@ -101,7 +101,6 @@ p {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 15px 10px;
-    margin-top: 10px;
 }
 
 .bottom-bar-icons {
@@ -115,14 +114,19 @@ p {
 
 .icon-active{
     background-color: var(--light-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chatbot-content {
     box-sizing: border-box;
-    height: 72vh;
+    flex: 1;
     width: 100%;
     padding: 0px 10px;
+    overflow-y: hidden;
     display: flex;
+    margin-bottom: 15px;
 }
 
 input {
@@ -165,15 +169,17 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
     height: 20px;
     width: 20px;
     padding: 8px;
     background-color: var(--decoration-pink);
     object-fit: contain;
+    cursor: pointer;
 }
 
 .chatbot-chat-interface {
-    max-height: 72vh;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -181,7 +187,7 @@ input::placeholder {
 }
 
 .chatbot-chat-welcome {
-    height: 72vh;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -265,7 +271,7 @@ input::placeholder {
 .chatbot-history-container-item-context {
     display: flex;
     align-items: center;
-    width: 95%;
+    max-width: 300px; /*change this*/
     overflow: hidden;
 }
 
@@ -301,6 +307,11 @@ input::placeholder {
     border-radius: 15px;
     background-color: var(--mid-light-black);
     font-size: small;
+    max-width: 300px;  /* Set your desired maximum width */
+    white-space: normal;  /* Allow the text to wrap onto the next line */
+    overflow: hidden;  /* Hide any overflow beyond the container */
+    text-overflow: ellipsis;  /* Optional: if you want truncated text with ellipsis (...) */
+    word-wrap: break-word;
 }
 
 .bot-chat-container {
@@ -318,8 +329,65 @@ input::placeholder {
 .bot-chat-bubble {
     padding: 10px;
     margin-left: 5px;
-    max-width: 80%;
     font-size: small;
+    max-width: 300px;  /* Set your desired maximum width */
+    white-space: normal;  /* Allow the text to wrap onto the next line */
+    overflow: hidden;  /* Hide any overflow beyond the container */
+    text-overflow: ellipsis;  /* Optional: if you want truncated text with ellipsis (...) */
+    word-wrap: break-word;
+}
+
+@media screen and (min-width: 260px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 150px;
+    }
+}
+
+@media screen and (min-width: 320px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        font-size: medium;
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 350px;
+    }
+}
+
+@media screen and (min-width: 610px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 400px;
+        font-size: large;
+    }
+}
+
+@media screen and (min-width: 710px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 480px;
+        font-size: large;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 530px;
+        font-size: large;
+    }
+}
+
+@media screen and (min-width: 813px) {
+    .bot-chat-bubble, .user-chat-bubble {
+        max-width: 650px;
+        font-size: large;
+    }
 }
 
 @media only screen and (max-width: 260px) {
